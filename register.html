@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash of BaNG - Register Clan</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <h1>Clash of BaNG</h1>
+            <p>Join the Brotherhood of Dark Troops</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="troops.html">Troops</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="register.html" class="active">Register Clan</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-container">
+        
+        <section class="register-section">
+            <h2>Clan Registration Form</h2>
+            <p class="register-intro">Fill out the personal details below to apply for the Clash of BaNG community clan hubs.</p>
+            
+            <div id="errorContainer" class="error-box" style="display: none;"></div>
+            <div id="successContainer" class="success-box" style="display: none;"></div>
+
+            <form id="clanRegisterForm" method="POST" action="#">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name...">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input type="text" id="emailAddress" name="emailAddress" placeholder="e.g., chief@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="Male"> Male
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="Female"> Female
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="userAge">Age (Years)</label>
+                    <input type="number" id="userAge" name="userAge" min="0" placeholder="Enter your age">
+                </div>
+
+                <div class="form-group">
+                    <label for="favTroop">Favorite Dark Troop</label>
+                    <select id="favTroop" name="favTroop">
+                        <option value="">-- Select your favorite troop --</option>
+                        <option value="Night Stalker">Night Stalker</option>
+                        <option value="Shadow Golem">Shadow Golem</option>
+                        <option value="Dark Sorceress">Dark Sorceress</option>
+                        <option value="Obsidian Gargoyle">Obsidian Gargoyle</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="joinReason">Reason to Join</label>
+                    <textarea id="joinReason" name="joinReason" rows="5" placeholder="Tell us why you want to join our community worldwide reach..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Clash of BaNG Fan Community. All Rights Reserved.</p>
+        <p>References: Inspired by Supercell's Clash Universe.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

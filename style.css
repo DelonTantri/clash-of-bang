@@ -1,0 +1,615 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #121214;
+    color: #e1e1e6;
+}
+
+/* --- Header --- */
+.main-header {
+    background: linear-gradient(135deg, #1f1135 0%, #0b0614 100%);
+    color: #00ffcc;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 3px solid #00ffcc;
+}
+
+.main-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- Navigation --- */
+.main-nav {
+    background-color: #1a1a1e;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #29292e;
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.main-nav a {
+    display: block;
+    color: #a8a8b3;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover, .main-nav a.active {
+    color: #00ffcc;
+    background-color: #29292e;
+}
+
+/* --- Content Container --- */
+.content-container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    background-color: #1c1c21;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    border: 1px solid #29292e;
+}
+
+section h2 {
+    color: #00ffcc;
+    margin-bottom: 20px;
+    border-left: 4px solid #00ffcc;
+    padding-left: 10px;
+}
+
+/* --- Carousel Styling --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 255, 204, 0.2);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 255, 204, 0.6);
+    color: #000;
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* --- Brief Info Section --- */
+.info-section p {
+    font-size: 1.1rem;
+    color: #c4c4cc;
+}
+
+/* --- Popular Troops Grid --- */
+.troops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.troop-card-home {
+    background-color: #29292e;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 20px;
+    border: 1px solid #323238;
+}
+
+.troop-card-home img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.troop-card-home h3 {
+    color: #fff;
+    margin: 15px 0 10px 0;
+}
+
+.troop-card-home p {
+    padding: 0 15px;
+    color: #a8a8b3;
+    font-size: 0.95rem;
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: #0b0614;
+    color: #7c7c8a;
+    text-align: center;
+    padding: 25px;
+    font-size: 0.9rem;
+    border-top: 1px solid #29292e;
+}
+
+.main-footer p {
+    margin-bottom: 5px;
+}
+
+/* --- Responsive Layout (Mobile Friendly < 768px) --- */
+@media screen and (max-width: 768px) {
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+
+    .carousel-container {
+        height: 250px;
+    }
+
+    .carousel-caption h3 {
+        font-size: 1.1rem;
+    }
+
+    .carousel-caption p {
+        font-size: 0.85rem;
+    }
+
+    .main-header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* --- Gallery Page Styling --- */
+.gallery-intro {
+    color: #a8a8b3;
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.gallery-item {
+    background-color: #29292e;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #323238;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 204, 0.15);
+}
+
+.gallery-image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: #121214;
+}
+
+.gallery-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-image-wrapper img {
+    transform: scale(1.08);
+}
+
+.gallery-info {
+    padding: 20px;
+}
+
+.gallery-info h3 {
+    color: #00ffcc;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.gallery-info p {
+    color: #c4c4cc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* --- Troops Page Styling & Hover Animation --- */
+.troops-intro {
+    color: #a8a8b3;
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+}
+
+.interactive-troops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.interactive-troop-card {
+    position: relative;
+    background-color: #29292e;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #323238;
+    text-align: center;
+    /* Smooth transition for expansion and shadow effect */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+    cursor: pointer;
+    height: 350px;
+}
+
+/* 1. Expanded Shadow Effect & Card Scaling on Hover */
+.interactive-troop-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 12px 28px rgba(0, 255, 204, 0.35); /* Bright glow expanded shadow */
+    border-color: #00ffcc;
+}
+
+.troop-image-container {
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+}
+
+.troop-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.troop-basic-info {
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1e;
+}
+
+.troop-basic-info h3 {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* 2. Stats Overlay (Hidden by default, slides up on hover) */
+.troop-stats-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(11, 6, 20, 0.95) 0%, rgba(28, 28, 33, 0.98) 100%);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* Reveal stats on hover */
+.interactive-troop-card:hover .troop-stats-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.troop-stats-overlay h3 {
+    color: #00ffcc;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #00ffcc;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+.troop-stats-overlay ul {
+    list-style: none;
+    width: 100%;
+}
+
+.troop-stats-overlay li {
+    color: #e1e1e6;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #323238;
+    padding-bottom: 4px;
+}
+
+.troop-stats-overlay li strong {
+    color: #a8a8b3;
+}
+
+/* --- About Page Styling --- */
+.about-story p {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    color: #c4c4cc;
+    text-align: justify;
+}
+
+.section-subtitle {
+    color: #a8a8b3;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+/* Timeline Layout */
+.milestones-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-left: 2px solid #00ffcc;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: #00ffcc;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ffcc;
+}
+
+.timeline-year {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00ffcc;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.timeline-item p {
+    color: #c4c4cc;
+    font-size: 0.95rem;
+}
+
+/* Founders Grid Layout */
+.founders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.founder-card {
+    background-color: #29292e;
+    border: 1px solid #323238;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+}
+
+.founder-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px auto;
+    border: 2px solid #00ffcc;
+}
+
+.founder-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.founder-card h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.founder-role {
+    display: block;
+    color: #00ffcc;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.founder-card p {
+    color: #a8a8b3;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* --- Register Page & Form Styling --- */
+.register-intro {
+    color: #a8a8b3;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+#clanRegisterForm {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #00ffcc;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    background-color: #29292e;
+    border: 1px solid #323238;
+    border-radius: 4px;
+    padding: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #00ffcc;
+}
+
+/* Radio buttons layout using Flexbox */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    padding: 5px 0;
+}
+
+.radio-label {
+    color: #c4c4cc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.radio-label input[type="radio"] {
+    accent-color: #00ffcc;
+    width: 18px;
+    height: 18px;
+}
+
+/* Submit button with hover effect */
+.submit-btn {
+    background-color: #00ffcc;
+    color: #0b0614;
+    border: none;
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #00cc99;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Validation Alert Boxes */
+.error-box {
+    background-color: rgba(255, 107, 107, 0.15);
+    border: 1px solid #ff6b6b;
+    color: #ff6b6b;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.success-box {
+    background-color: rgba(0, 255, 204, 0.15);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    text-align: center;
+}
