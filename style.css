@@ -592,24 +592,76 @@ section h2 {
 }
 
 /* Validation Alert Boxes */
-.error-box {
-    background-color: rgba(255, 107, 107, 0.15);
-    border: 1px solid #ff6b6b;
-    color: #ff6b6b;
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 25px;
-    font-size: 0.95rem;
-    line-height: 1.5;
+/* Container Utama Melayang di Pojok Kanan Bawah */
+.toast-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none; /* Supaya klik mouse tembus ke elemen di bawahnya jika kosong */
 }
 
-.success-box {
-    background-color: rgba(0, 255, 204, 0.15);
+/* Style Dasar Setiap Kotak Notifikasi */
+.toast-box {
+    min-width: 280px;
+    max-width: 380px;
+    padding: 14px 20px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    pointer-events: auto; /* Memungkinkan interaksi pada box itu sendiri */
+    
+    /* Animasi masuk dari Kanan */
+    animation: toastSlideIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Box Error */
+.toast-box.error {
+    background-color: rgba(255, 107, 107, 0.12);
+    border: 1px solid #ff6b6b;
+    color: #ff6b6b;
+}
+
+/* Box Success */
+.toast-box.success {
+    background-color: rgba(0, 255, 204, 0.12);
     border: 1px solid #00ffcc;
     color: #00ffcc;
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 25px;
-    font-size: 0.95rem;
-    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 255, 204, 0.15);
+}
+
+/* State ketika dihapus */
+.toast-box.hide {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+}
+
+/* Animasi muncul mengalir dari sisi kanan layar */
+@keyframes toastSlideIn {
+    from {
+        transform: translateX(110%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* RESPONSIVE LAYOUT: Menyesuaikan Layar Smartphone (< 480px) */
+@media screen and (max-width: 480px) {
+    .toast-container {
+        right: 15px;
+        left: 15px;
+        bottom: 15px;
+    }
+    .toast-box {
+        max-width: 100%;
+        min-width: 0;
+    }
 }
