@@ -31,9 +31,6 @@
             <h2>Clan Registration Form</h2>
             <p class="register-intro">Fill out the personal details below to apply for the Clash of BaNG community clan hubs.</p>
             
-            <div id="errorContainer" class="error-box" style="display: none;"></div>
-            <div id="successContainer" class="success-box" style="display: none;"></div>
-
             <form id="clanRegisterForm" method="POST" action="#">
                 
                 <div class="form-group">
@@ -67,10 +64,19 @@
                     <label for="favTroop">Favorite Dark Troop</label>
                     <select id="favTroop" name="favTroop">
                         <option value="">-- Select your favorite troop --</option>
+                        
                         <option value="Night Stalker">Night Stalker</option>
                         <option value="Shadow Golem">Shadow Golem</option>
+                        
                         <option value="Dark Sorceress">Dark Sorceress</option>
                         <option value="Obsidian Gargoyle">Obsidian Gargoyle</option>
+                        
+                        <option value="Pekka King">Pekka King</option>
+                        <option value="Electro Dragon">Electro Dragon</option>
+                        <option value="Lava Hound">Lava Hound</option>
+                        <option value="Ice Golem">Ice Golem</option>
+                        <option value="Bowler">Bowler</option>
+                        
                     </select>
                 </div>
 
@@ -90,6 +96,8 @@
         <p>&copy; 2026 Clash of BaNG Fan Community. All Rights Reserved.</p>
         <p>References: Inspired by Supercell's Clash Universe.</p>
     </footer>
+
+    <div id="toast-container" class="toast-container"></div>
 
     <script src="main.js"></script>
 </body>
