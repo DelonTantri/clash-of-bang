@@ -5,17 +5,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.getElementById('prevBtn');
     let currentSlide = 0;
 
+    // JIKA TIDAK ADA SLIDE DI HALAMAN INI, BERHENTI DI SINI (AGAR TIDAK ERROR)
+    if (slides.length === 0) {
+        console.warn("Carousel slides tidak ditemukan di halaman ini. Melewati fungsi carousel.");
+        return; 
+    }
+
     // Function to change slide
     function showSlide(index) {
-        // Remove active class from current slide
+        // Hapus kelas aktif dari slide saat ini
         slides[currentSlide].classList.remove('active');
         
-        // Calculate next index loop
+        // Hitung loop indeks berikutnya
         currentSlide = (index + slides.length) % slides.length;
         
-        // Add active class to the target slide
+        // Tambahkan kelas aktif ke slide target
         slides[currentSlide].classList.add('active');
     }
+
+    // Event Listeners untuk tombol
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener('click', function() {
+            showSlide(currentSlide + 1);
+        });
+
+        prevBtn.addEventListener('click', function() {
+            showSlide(currentSlide - 1);
+        });
+    }
+
+    // Auto play carousel setiap 5 detik
+    setInterval(function() {
+        showSlide(currentSlide + 1);
+    }, 5000);
+});
 
     // Event Listeners for buttons
     if (nextBtn && prevBtn) {
