@@ -34,22 +34,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 5000);
 });
 
-// --- FORM VALIDATION LOGIC (NO REGEX) ---
+// --- MODERN STACKABLE TOAST HELPER FUNCTION ---
+// Fungsi mandiri untuk membuat dan menampilkan box notifikasi melayang
+function showToast(message, type = 'error') {
+    const container = document.getElementById('toast-container');
+
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast-box ${type}`;
+    toast.innerText = message;
+   
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('hide'); // Memicu animasi fade-out di CSS
+        
+        // Hapus elemen dari DOM setelah animasi transisi CSS selesai (400ms)
+        setTimeout(() => {
+            toast.remove();
+        }, 400);
+    }, 4000);
+}
+
+
+// FORM VALIDATION LOGIC (NO REGEX)
 document.addEventListener('DOMContentLoaded', function() {
     const registrationForm = document.getElementById('clanRegisterForm');
-    const errorContainer = document.getElementById('errorContainer');
-    const successContainer = document.getElementById('successContainer');
 
     if (registrationForm) {
         registrationForm.addEventListener('submit', function(event) {
             // Stop form submission behavior
             event.preventDefault();
-
-            // Clear previous alert states
-            errorContainer.style.display = 'none';
-            errorContainer.innerHTML = '';
-            successContainer.style.display = 'none';
-            successContainer.innerText = '';
 
             // Fetch input values and trim white space
             const nameValue = document.getElementById('fullName').value.trim();
@@ -58,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const favTroopValue = document.getElementById('favTroop').value;
             const reasonValue = document.getElementById('joinReason').value.trim();
             
-            // Handle Radio input value fetch
+            // Handle radio input value fetch
             const genderOptions = document.getElementsByName('gender');
             let genderValue = '';
             for (let i = 0; i < genderOptions.length; i++) {
@@ -78,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorLogs.push('Full Name must consist of at least 3 characters.');
             }
 
-            // 2. Pure JavaScript Email Validation (Manual String Checking - NO REGEX)
+            // 2. Email validation (Manual String Checking - NO REGEX)
             if (emailValue === '') {
                 errorLogs.push('Email Address field cannot be left blank.');
             } else {
@@ -96,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorLogs.push('Please select your gender identity.');
             }
 
-            // 4. Validation for Age Range (Anti-Negative Check)
+            // 4. Validation for Age range (Anti-Negative Check)
             if (ageValue === '') {
                 errorLogs.push('Age field cannot be left blank.');
             } else {
@@ -118,28 +134,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorLogs.push('Please write a short reason regarding why you want to join our clan.');
             }
 
-            // Check final validation result
+            // Toast Triggering Logic
             if (errorLogs.length > 0) {
-                // If errors exist, render them inside a bulleted list layout
-                let alertHtml = '<strong>Registration failed due to the following reasons:</strong><ul style="margin-top: 5px; padding-left: 20px;">';
+                // Jika ada error, looping array dan tembak masing-masing error menjadi 1 kotak toast tersendiri
                 for (let j = 0; j < errorLogs.length; j++) {
-                    alertHtml += '<li>' + errorLogs[j] + '</li>';
+                    showToast(errorLogs[j], 'error');
                 }
-                alertHtml += '</ul>';
-                
-                errorContainer.innerHTML = alertHtml;
-                errorContainer.style.display = 'block';
-                
-                // Scroll page smoothly to error alerts banner
-                errorContainer.scrollIntoView({ behavior: 'smooth' });
             } else {
-                // If every input passes validation checkpoints successfully
-                successContainer.innerText = 'Success! Your clan registration application has been submitted successfully.';
-                successContainer.style.display = 'block';
+                // Jika semua input lolos verifikasi, tembak toast sukses berwarna hijau neon
+                showToast('Success! Your clan registration application has been submitted successfully.', 'success');
                 
-                // Reset form fields completely
+                // Reset form fields secara total
                 registrationForm.reset();
-                successContainer.scrollIntoView({ behavior: 'smooth' });
             }
         });
     }
