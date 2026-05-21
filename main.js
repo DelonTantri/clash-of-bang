@@ -1,11 +1,13 @@
-// Carousel Functionality
+// ==========================================
+// 1. CAROUSEL FUNCTIONALITY
+// ==========================================
 document.addEventListener('DOMContentLoaded', function() {
     const slides = document.querySelectorAll('.carousel-slide');
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
     let currentSlide = 0;
 
-    // JIKA TIDAK ADA SLIDE DI HALAMAN INI, BERHENTI DI SINI (AGAR TIDAK ERROR)
+    // JIKA TIDAK ADA SLIDE DI HALAMAN INI, BERHENTI DI SINI (AGAR TIDAK ERROR DI REGISTER.HTML)
     if (slides.length === 0) {
         console.warn("Carousel slides tidak ditemukan di halaman ini. Melewati fungsi carousel.");
         return; 
@@ -23,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         slides[currentSlide].classList.add('active');
     }
 
-    // Event Listeners untuk tombol
+    // Event Listeners untuk tombol navigasi carousel
     if (nextBtn && prevBtn) {
         nextBtn.addEventListener('click', function() {
             showSlide(currentSlide + 1);
@@ -40,24 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 5000);
 });
 
-    // Event Listeners for buttons
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', function() {
-            showSlide(currentSlide + 1);
-        });
-
-        prevBtn.addEventListener('click', function() {
-            showSlide(currentSlide - 1);
-        });
-    }
-
-    // Optional: Auto play carousel every 5 seconds
-    setInterval(function() {
-        showSlide(currentSlide + 1);
-    }, 5000);
-});
-
-// --- MODERN STACKABLE TOAST HELPER FUNCTION ---
+// ==========================================
+// 2. MODERN STACKABLE TOAST HELPER FUNCTION
+// ==========================================
 // Fungsi mandiri untuk membuat dan menampilkan box notifikasi melayang
 function showToast(message, type = 'error') {
     const container = document.getElementById('toast-container');
@@ -67,7 +54,7 @@ function showToast(message, type = 'error') {
     const toast = document.createElement('div');
     toast.className = `toast-box ${type}`;
     toast.innerText = message;
-   
+    
     container.appendChild(toast);
 
     setTimeout(() => {
@@ -80,14 +67,15 @@ function showToast(message, type = 'error') {
     }, 4000);
 }
 
-
-// FORM VALIDATION LOGIC (NO REGEX)
+// ==========================================
+// 3. FORM VALIDATION LOGIC (NO REGEX)
+// ==========================================
 document.addEventListener('DOMContentLoaded', function() {
     const registrationForm = document.getElementById('clanRegisterForm');
 
     if (registrationForm) {
         registrationForm.addEventListener('submit', function(event) {
-            // Stop form submission behavior
+            // Stop form submission behavior (Mencegah Error 405 di GitHub Pages)
             event.preventDefault();
 
             // Fetch input values and trim white space
