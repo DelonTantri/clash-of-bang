@@ -43,20 +43,34 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ==========================================
-// 2. MODERN STACKABLE TOAST HELPER FUNCTION
+// 2. MODERN STACKABLE TOAST HELPER FUNCTION (NO DUPLICATE)
 // ==========================================
-// Fungsi mandiri untuk membuat dan menampilkan box notifikasi melayang
 function showToast(message, type = 'error') {
     const container = document.getElementById('toast-container');
-
     if (!container) return;
 
+    // 1. CARI APAKAH ADA TOAST AKTIF DENGAN TEKS YANG SAMA PERSIS
+    const activeToasts = container.querySelectorAll('.toast-box');
+    for (let i = 0; i < activeToasts.length; i++) {
+        if (activeToasts[i].innerText === message && !activeToasts[i].classList.contains('hide')) {
+            
+            // Jika ketemu yang sama, beri efek getar/animasi ulang (opsional)
+            activeToasts[i].style.animation = 'none';
+            activeToasts[i].offsetHeight; // Trik memicu ulang animasi CSS (reflow)
+            activeToasts[i].style.animation = 'toastSlideIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+            
+            return; // LANGSUNG KELUAR FUNGSI, JANGAN BUAT TOAST BARU
+        }
+    }
+
+    // 2. JIKA TIDAK ADA DUPLIKAT, BUAT TOAST BARU SEPERTI BIASA
     const toast = document.createElement('div');
     toast.className = `toast-box ${type}`;
     toast.innerText = message;
     
     container.appendChild(toast);
 
+    // Hilangkan toast secara otomatis setelah 4 detik
     setTimeout(() => {
         toast.classList.add('hide'); // Memicu animasi fade-out di CSS
         
